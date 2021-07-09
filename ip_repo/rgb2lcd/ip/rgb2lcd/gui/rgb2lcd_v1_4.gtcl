@@ -1,0 +1,2 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_VID_OUT_DATA_WIDTH_VALUE {REDDEPTH GREENDEPTH BULEDEPTH } {expr $REDDEPTH+$GREENDEPTH+$BULEDEPTH}

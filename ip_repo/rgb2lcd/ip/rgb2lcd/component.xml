@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>alientek.com</spirit:vendor>
+  <spirit:library>user</spirit:library>
+  <spirit:name>rgb2lcd</spirit:name>
+  <spirit:version>1.4</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>lcd_rst</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>vid_rst</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>vid_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>pixel_clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>pixel_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.PIXEL_CLK.ASSOCIATED_BUSIF">pixel_clk</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>vid_rgb</spirit:name>
+      <spirit:displayName>vid_rgb</spirit:displayName>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="vid_io" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="vid_io_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ACTIVE_VIDEO</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rgb_vde</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>VSYNC</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rgb_vsync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rgb_data</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>HSYNC</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rgb_hsync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>lcd</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="user" spirit:name="lcd" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="user" spirit:name="lcd_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_de</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>BL</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_bl</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_pclk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>HS</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_hs</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>VS</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_vs</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>lcd_rgb</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="gpio_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_rgb_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_rgb_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TRI_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>lcd_rgb_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>rgb2lcd</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>363af335</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>rgb2lcd</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>363af335</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_xpgui</spirit:name>
+        <spirit:displayName>UI Layout</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xgui.ui</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_xpgui_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>f99884ab</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_utilityxitfiles</spirit:name>
+        <spirit:displayName>Utility XIT/TTCL</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xit.util</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_utilityxitfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>28ac42cb</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>rgb_data</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.VID_IN_DATA_WIDTH&apos;)) - 1)">23</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>rgb_vde</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>rgb_hsync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>rgb_vsync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pixel_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>vid_rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_pclk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_hs</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_vs</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_de</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_bl</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_id</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">2</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_rgb_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.VID_OUT_DATA_WIDTH&apos;)) - 1)">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_rgb_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.VID_OUT_DATA_WIDTH&apos;)) - 1)">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>lcd_rgb_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.VID_OUT_DATA_WIDTH&apos;)) - 1)">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+    <spirit:modelParameters>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
+        <spirit:name>VID_IN_DATA_WIDTH</spirit:name>
+        <spirit:displayName>Vid In Data Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.VID_IN_DATA_WIDTH">24</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>REDDEPTH</spirit:name>
+        <spirit:displayName>Reddepth</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.REDDEPTH">5</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>GREENDEPTH</spirit:name>
+        <spirit:displayName>Greendepth</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.GREENDEPTH">6</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>BULEDEPTH</spirit:name>
+        <spirit:displayName>Buledepth</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.BULEDEPTH">5</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>VID_OUT_DATA_WIDTH</spirit:name>
+        <spirit:displayName>Vid Out Data Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="dependent" spirit:id="MODELPARAM_VALUE.VID_OUT_DATA_WIDTH" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.REDDEPTH&apos;)) + spirit:decode(id(&apos;MODELPARAM_VALUE.GREENDEPTH&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.BULEDEPTH&apos;)))">16</spirit:value>
+      </spirit:modelParameter>
+    </spirit:modelParameters>
+  </spirit:model>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/rgb2lcd.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_363af335</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/rgb2lcd.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/rgb2lcd_v1_4.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_f99884ab</spirit:userFileType>
+        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_utilityxitfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>gui/rgb2lcd_v1_4.gtcl</spirit:name>
+        <spirit:userFileType>GTCL</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>rgb2lcd_v1_4</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>VID_IN_DATA_WIDTH</spirit:name>
+      <spirit:displayName>Vid In Data Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VID_IN_DATA_WIDTH">24</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>REDDEPTH</spirit:name>
+      <spirit:displayName>Reddepth</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.REDDEPTH">5</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>GREENDEPTH</spirit:name>
+      <spirit:displayName>Greendepth</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GREENDEPTH">6</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>BULEDEPTH</spirit:name>
+      <spirit:displayName>Buledepth</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.BULEDEPTH">5</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">rgb2lcd_v1_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>VID_OUT_DATA_WIDTH</spirit:name>
+      <spirit:displayName>Vid Out Data Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.VID_OUT_DATA_WIDTH">16</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.VID_OUT_DATA_WIDTH">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:supportedFamilies>
+        <xilinx:family xilinx:lifeCycle="Production">virtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">kintexu</xilinx:family>
+      </xilinx:supportedFamilies>
+      <xilinx:taxonomies>
+        <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
+        <xilinx:taxonomy>/Video_&amp;_Image_Processing</xilinx:taxonomy>
+      </xilinx:taxonomies>
+      <xilinx:displayName>rgb to lcd</xilinx:displayName>
+      <xilinx:definitionSource>package_project</xilinx:definitionSource>
+      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>xilinx.com:user:rgb2lcd:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>alientek.com:user:rgb2lcd:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2019-07-05T10:30:38Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9a8715a_ARCHIVE_LOCATION">f:/gitoffice/vivado_library/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55c4dfcf_ARCHIVE_LOCATION">f:/gitoffice/vivado_library/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23412d4_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1aa79406_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4225e6e6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fe4b61c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@523e5c3b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@517c2ecb_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@286b1037_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46fb3056_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@304262f0_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47521092_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60ffeff0_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f675ad2_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c63738d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f0eb20d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5675228_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1bf99b21_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@439e2a91_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e2d086f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44be3371_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4998a3db_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30fcfdc6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37a0c64b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e612c5e_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7305ed7f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a019138_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13ec9427_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69d60771_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e723658_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52bbf0b2_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@603bffb7_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5136b323_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@143fbb8f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23535683_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a435b80_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a3f5919_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d1b9ec2_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f8c1c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23d0e675_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b3ac75b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4eccb2e1_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ecb0149_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c390202_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20b7c867_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4657c4d3_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3791d63d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19bd8ef6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5381cc6d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3066ccda_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2428b415_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@529c6416_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b4642f5_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10e9bb02_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71d7492b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42fa2d36_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@769b99c4_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30678d12_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@267f5c3_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3effc894_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@561a64ce_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@285731ea_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@552b175d_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ca065da_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d084df1_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@578cba80_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5cb634e6_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25c2a03f_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2816e511_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50a26392_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e29b804_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4217ba74_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46ae17b7_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a8706ca_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d4090c4_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53469f49_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5cd21c29_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77b4ef40_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e82d1b0_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48adea68_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14681a48_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f49a6c_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@775b2ac7_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@331c7b3c_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d35e805_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31abe398_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4655b89f_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@247c55fe_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1105a668_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dd761b9_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3798b921_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17af8c_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55ba1491_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@199d9049_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ef59ee9_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75859149_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6471c66_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@676c94b8_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ea57319_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25463e41_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a3b8d5e_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@332eafb_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@310f78ae_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@365544a9_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53da2b5_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ea33db4_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46e8384_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d7e8bd4_ARCHIVE_LOCATION">f:/zynq/share_sample/ov7725_rgb565_lcd_6_adapt_all_lcd/ip_repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@566df911_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54886e88_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47ff17c5_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73968266_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c3675c4_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b5febc7_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ad36220_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a70ea82_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@266c7a35_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d10fc97_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f9d9151_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b6ff0b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f94e6ef_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c0ad17_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34934327_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2660ed4c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9197c48_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6982350d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b8f90eb_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6da512ef_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14475c93_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@724e6fda_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@712a90a6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fe05860_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12d40f05_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@670357ac_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e2be27f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69e453ec_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@128ffd99_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@258000b9_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fd692fa_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@186ae6c7_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@33d91ae9_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@208dec0c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@603a00eb_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1056ae29_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a19dc20_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2075e98f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73fe4264_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c06e28d_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e12c0d0_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@578ecc0c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3471fbb3_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20a49e56_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67fb6d3f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34e238c4_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61adc78e_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@270198b6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8fcfcc1_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d014812_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60ebc281_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48cdddc6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7eedf7b1_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ddbcc43_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75614b2d_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61728ccc_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43a78933_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6275122c_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e467202_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c3a9ab7_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@597f2e5d_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@621dd388_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ed57569_ARCHIVE_LOCATION">f:/zynq/Test/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5abe1937_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7703140b_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@143a229f_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@137d2c24_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37142802_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7894b73c_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@513bf28_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1df57f1_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@327294c6_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@167fc4ff_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@460c0d54_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9d25cf5_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39feb373_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@80020ff_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d9c4375_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@108b9c76_ARCHIVE_LOCATION">f:/zynq/zynq7010/vdma_lcd/repo/ip/rgb2lcd</xilinx:tag>
+      </xilinx:tags>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2018.3</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="becfce29"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c6a82c9e"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="8e249f26"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="d6e09ae3"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="ed39c55f"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

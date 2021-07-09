@@ -1,0 +1,16 @@
+#+TITLE: RGB to LCD
+#+AUTHOR: CX
+#+DATA: <2019-05-30 周四>
+
+* Overview
+  本用户指南介绍了Alientek RGB-to-LCD Intellectual Property。该IP接收Xilinx vid_io输入，并输出可独立定制的RGB颜色深度的像素总线，以连接到LCD或者VGA DAC。
+* Performance
+  IP本身不包括时序约束。预计PixelClk将受到外界的时间限制。
+
+| signal name | interface | signal type | init state | Description       |
+|-------------+-----------+-------------+------------+-------------------|
+| pixelclk    | -         | i           | N/A        | pixel clk         |
+| pvde        | vid_io    | i           | N/A        | video data valid: |
+| phsync      | vid_io    | i           | N/A        | 水平同步信号      |
+| pvsync      | vid_io    | i           | N/A        | 垂直同步信号      |
+|           |           |             |            |                   |
